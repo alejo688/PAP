@@ -75,6 +75,26 @@
             <label for="cuota_mensual" generated="true" class="error"></label>
         </div>
 
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label>Horas Académicas</label>
+            <input name="hora_academica" type="text" class="form-control hora_academica" placeholder="Ingrese el horas académicas">
+            <label for="hora_academica" generated="true" class="error"></label>
+        </div>
+
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label>Tutorias</label>
+            <input name="tutorias" type="text" class="form-control tutorias" placeholder="Ingrese las tutorias">
+            <label for="tutorias" generated="true" class="error"></label>
+        </div>
+    </div>
+
+    <div class="box-form col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <label>Ciclos</label>
+            <input name="ciclos" type="text" class="form-control ciclos" placeholder="Ingrese el número de ciclos">
+            <label for="ciclos" generated="true" class="error"></label>
+        </div>
+        
         <?php
             if (isset($_GET["id"])) {
         ?>
@@ -121,6 +141,9 @@
             $(".saldo").val(result.saldo);
             $(".cuotas").val(result.cuotas);
             $(".cuota_mensual").val(result.cuota_mensual);
+            $(".hora_academica").val(result.hora_academica);
+            $(".tutorias").val(result.tutorias);
+            $(".ciclos").val(result.ciclos);
 
             $("#tipo").selectpicker('val', result.tipo);
 
@@ -164,6 +187,18 @@
                 cuota_mensual: {
                     number: true,
                     min: 0
+                },
+                hora_academica: {
+                    number: true,
+                    min: 0
+                },
+                tutorias: {
+                    number: true,
+                    min: 0
+                },
+                ciclos: {
+                    number: true,
+                    min: 0
                 }
                 <?php
                     if (isset($_GET["id"])) {
@@ -201,6 +236,14 @@
                     min: msgMin
                 },
                 cuota_mensual: {
+                    number: msgNumber,
+                    min: msgMin
+                },
+                hora_academica: {
+                    number: msgNumber,
+                    min: msgMin
+                },
+                ciclos: {
                     number: msgNumber,
                     min: msgMin
                 }

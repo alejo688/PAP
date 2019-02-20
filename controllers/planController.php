@@ -14,7 +14,7 @@
         */
         public static function create($plan) {
             /* Consulta SP */
-		    $consulta = 'CALL passport.Creacion_plan(?, ?, ?, ?, ?, ?, ?)';
+		    $consulta = 'CALL passport.Creacion_plan(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
             
             /* Ejecución de la consulta */
             $comando = ConexionBD::obtenerInstancia()->obtenerBD()->prepare($consulta);
@@ -26,7 +26,10 @@
                     $plan->valor_total,
                     $plan->saldo,
                     $plan->cuotas,
-                    $plan->cuota_mensual
+                    $plan->cuota_mensual,
+                    $plan->hora_academica,
+                    $plan->tutorias,
+                    $plan->ciclos
                 )
             );
             $comando->closeCursor();
@@ -38,7 +41,7 @@
         */
         public static function update($plan) {
             /* Consulta SP */
-		    $consulta = 'CALL passport.Modificacion_plan(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		    $consulta = 'CALL passport.Modificacion_plan(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
             
 		    /* Ejecución de la consulta */
 		    $comando = ConexionBD::obtenerInstancia()->obtenerBD()->prepare($consulta);
@@ -51,6 +54,9 @@
                 $plan->saldo,
                 $plan->cuotas,
                 $plan->cuota_mensual,
+                $plan->hora_academica,
+                $plan->tutorias,
+                $plan->ciclos,
                 $plan->estado
             ));
             $comando->closeCursor();
@@ -109,6 +115,9 @@
                             saldo,
                             cuotas,
                             cuota_mensual,
+                            hora_academica,
+                            tutorias,
+                            ciclos,
                             estado
                         FROM plan
                         WHERE pk_plan_id = ?";

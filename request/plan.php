@@ -48,6 +48,9 @@ class plan
             $planModel->saldo = (isset($_POST['saldo'])) ? $_POST['saldo'] : null;
             $planModel->cuotas = (isset($_POST['cuotas'])) ? $_POST['cuotas'] : null;
             $planModel->cuota_mensual = (isset($_POST['cuota_mensual'])) ? $_POST['cuota_mensual'] : null;
+            $planModel->hora_academica = $_POST['hora_academica'];
+            $planModel->tutorias = $_POST['tutorias'];
+            $planModel->ciclos = $_POST['ciclos'];
 
             try {
 
@@ -75,6 +78,9 @@ class plan
             $planModel->saldo = (isset($_POST['saldo'])) ? $_POST['saldo'] : null;
             $planModel->cuotas = (isset($_POST['cuotas'])) ? $_POST['cuotas'] : null;
             $planModel->cuota_mensual = (isset($_POST['cuota_mensual'])) ? $_POST['cuota_mensual'] : null;
+            $planModel->hora_academica = $_POST['hora_academica'];
+            $planModel->tutorias = $_POST['tutorias'];
+            $planModel->ciclos = $_POST['ciclos'];
             $planModel->estado = $_POST['estado'];
 
             try {

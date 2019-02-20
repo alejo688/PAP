@@ -15,6 +15,9 @@
                 <th data-column-id="tipo">Tipo</th>
                 <th data-column-id="inicial">Inicial</th>
                 <th data-column-id="valor_total">Valor Total</th>
+                <th data-column-id="hora_academica">Horas Académicas</th>
+                <th data-column-id="tutorias">Tutorias</th>
+                <th data-column-id="ciclos">Ciclos</th>
                 <th data-column-id="estado">Estado</th>
                 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Opciones</th>
             </tr>
@@ -38,6 +41,9 @@
                         '<td>' + obj.tipo + '</td>' +
                         '<td>' + obj.inicial + '</td>' +
                         '<td>' + obj.valor_total + '</td>' +
+                        '<td>' + obj.hora_academica + '</td>' +
+                        '<td>' + obj.tutorias + '</td>' +
+                        '<td>' + obj.ciclos + '</td>' +
                         '<td>' + obj.estado + '</td>' +
                         '<td>' +
                         '<button type="button" class="btn btn-xs btn-default" command="edit" data-row-id="' + obj.pk_plan_id + '"><span class="glyphicon glyphicon-pencil"></span></button>' +

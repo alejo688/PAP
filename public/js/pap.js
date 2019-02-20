@@ -110,6 +110,7 @@ function formAction(route, formData, routeExit) {
 
         if (result.estado == 0){
             bootbox.alert(result.mensaje);
+            console.log(result.error);
         } else {
             bootbox.alert(result.mensaje, function() {
                 location.href = routeExit;

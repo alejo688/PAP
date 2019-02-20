@@ -8,7 +8,7 @@ require_once "../controllers/filialController.php";
 * clase encargada de recibir, procesar y dar respuesta a los datos enviado por la aplicación en la tabla filial
 */
 
-class filial 
+class filial
 {
     /**
     * Metodo encargado de procesar la petición por post y ejecutar un metodo asociado a la petición

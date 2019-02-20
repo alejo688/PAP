@@ -10,5 +10,9 @@
 		public $valor_total;
 		public $saldo;
 		public $cuotas;
-		public $cuota_mensual;
+        public $cuota_mensual;
+        public $hora_academica;
+        public $tutorias;
+        public $ciclos;
+        public $estado;
     }
