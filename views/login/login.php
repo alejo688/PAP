@@ -6,9 +6,24 @@
         <div class="panel-body">
             <input name="action" type="hidden" value="login">
             <div class="form-group">
-                <label>Usuario</label>
-                <input name="username" type="email" class="form-control" placeholder="Ingrese su usuario" required>
+                <label>Correo</label>
+                <input name="correo" type="email" class="form-control" placeholder="Ingrese su correo" required>
             </div>
+
+            <div class="form-group">
+                <label>Perfil</label>
+                <select id="perfil" class="form-control perfil" name="perfil" data-live-search="true" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="1">Coordinador</option>
+                    <option value="2">Docente</option>
+                    <option value="3">Estudiante</option>
+                    <option value="4">Gerente</option>
+                    <option value="5">Registro y control</option>
+                    <option value="6">Servicio al cliente</option>
+                    <option value="7">Visualizador</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label>Contraseña</label>
                 <input name="password" type="password" class="form-control" placeholder="Ingrese su contraseña" required>
@@ -24,7 +39,10 @@
     $(document).ready(function() {
         $("#login").validate({
             rules: {
-                user: {
+                correo: {
+                    required: true
+                },
+                tipo: {
                     required: true
                 },
                 password: {
@@ -32,7 +50,10 @@
                 }
             },
             messages: {
-                user: {
+                correo: {
+                    required: "El campo usuario es obligatorio"
+                },
+                tipo: {
                     required: "El campo usuario es obligatorio"
                 },
                 password: {
@@ -45,7 +66,7 @@
             var isvalid = $(this).valid();
             if (isvalid) {
                 e.preventDefault();
-                $.post("request/usuario.php", $(this).serialize(), function(data) {
+                $.post("request/login.php", $(this).serialize(), function(data) {
                     
                     var result = jQuery.parseJSON(data);
 

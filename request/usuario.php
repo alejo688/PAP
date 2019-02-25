@@ -31,8 +31,6 @@
                 return self::getById();
             else if ($peticion == 'delete')
                 return self::delete();
-            else if ($peticion == 'login')
-                return self::login();
             else
                 return json_encode(["estado" => 0, "mensaje" => "Url mal formada"]);
         }
@@ -132,36 +130,6 @@
             } catch (Exception $ex) {
                 return json_encode(["estado" => 0, "mensaje" => "Error al enviar datos", "error" => $ex->getMessage()]);
 			}
-        }
-
-        /**
-        * Metodo encargado de validar el usuario y contraseña de un usuario
-        */
-        public static function login()
-        {
-            //$registrausuarioController = new registrausuarioController();
-            $usuarioModel = new usuarioModel();
-
-            $usuarioModel->username = $_POST["username"];
-            $usuarioModel->password = $_POST["password"];
-
-            $resultado = usuarioController::login($usuarioModel);
-
-            if ($resultado != null) {
-
-                //if (password_verify($usuarioModel->password, $resultado["password"])) {
-                    session_start();
-                    
-                    $_SESSION['log_user'] = $resultado[0]["id_usuarios"];
-                    $_SESSION['nombre'] = $resultado[0]["nombre"];
-                    $_SESSION['username'] = $resultado[0]["username"];
-
-                    return json_encode(["estado" => 1]);
-                /*} else {
-                    return json_encode(["estado" => 0, "mensaje" => "Error al iniciar sesión, por favor verifique su usuario o contraseña"]);    
-                }*/
-            } else 
-                return json_encode(["estado" => 0, "mensaje" => "Error al iniciar sesión, por favor verifique su usuario o contraseña"]);
         }
     }
 

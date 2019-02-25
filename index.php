@@ -15,7 +15,7 @@
 ?>
 <script>
     jQuery(document).ready(function($) {
-        $('.userName').html("<?= ucfirst($_SESSION['username']) ?>");
+        $('.userName').html("<?= ucfirst($_SESSION['correo']) ?>");
     });
 </script>
 <?php

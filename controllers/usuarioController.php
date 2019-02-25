@@ -103,38 +103,4 @@
             $comando->execute(array($id));
             $comando->closeCursor();
         }
-
-        /**
-        * Metodo encargado de la autenticación del usuario
-        * @param usuario
-        */
-        public static function login($usuario) {
-		    $consulta = 'CALL passport.Login(?, ?);';
-		    
-            /* Ejecución de la consulta */	
-		    $comando = ConexionBD::obtenerInstancia()->obtenerBD()->prepare($consulta);
-		    $comando->execute(
-                array(
-                    $usuario->username,
-                    $usuario->password
-                )
-            );
-
-            if ($comando->rowCount() > 0)
-                $result = $comando->fetchAll(PDO::FETCH_ASSOC);
-            else
-                $result = null;
-
-            $comando->closeCursor();
-
-            return $result;
-        }
-
-        /**
-        * Metodo encargado de la destruir la session
-        */
-        public static function logout() {
-		    session_destroy();
-        }
-        
     }

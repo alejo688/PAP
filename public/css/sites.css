@@ -8,6 +8,14 @@ html, body{
     margin-bottom: 5%;
 }
 
+.navbar-nav > li > a > i{
+    font-size: 12pt;
+}
+
+.dropdown > a {
+    cursor: pointer;
+}
+
 #header-list {
     margin-top: 60px;
 }
