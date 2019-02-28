@@ -53,21 +53,38 @@
                     $titular->estudiante
                 )
             );
-            $comando->closeCursor();
-
-            $consulta = 'SELECT LAST_INSERT_ID()';
-            $comando = ConexionBD::obtenerInstancia()->obtenerBD()->prepare($consulta);
-            $comando->execute();
 
             if ($comando->rowCount() > 0) {
                 $result = $comando->fetchAll(PDO::FETCH_ASSOC);
                 $comando->closeCursor();
 
-                return $result[0]["LAST_INSERT_ID()"];
+                $repuesta = $result[0]["respuesta"];
+                $id_repuesta = $result[0]["id_respuesta"];
             }
-		    else {
-                return null;
+
+            $comando->closeCursor();
+
+            if ($id_repuesta == 1) {
+                $consulta = 'SELECT LAST_INSERT_ID()';
+                $comando = ConexionBD::obtenerInstancia()->obtenerBD()->prepare($consulta);
+                $comando->execute();
+
+                if ($comando->rowCount() > 0) {
+                    $result = $comando->fetchAll(PDO::FETCH_ASSOC);
+                    $comando->closeCursor();
+
+                    return ["id_repuesta" => $id_repuesta, "repuesta" => $repuesta, "pk_titular_id" => $result[0]["LAST_INSERT_ID()"]];
+                }
+                else {
+                    return null;
+                }
             }
+            else
+            {
+                return ["id_repuesta" => $id_repuesta, "repuesta" => $repuesta];
+            }
+
+            
         }
 
         /**

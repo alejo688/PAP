@@ -84,11 +84,14 @@ class titular
 
         try {
 
-            $titularModel->pk_titular_id = $titularController::create($titularModel);
+            $result = $titularController::create($titularModel);
 
-            if ($_POST['estudiante'] == true) {
+            if ($_POST['estudiante'] == true && $result["id_repuesta"] == 1) {
+
+                $titularModel->pk_titular_id = $result["pk_titular_id"];
+
                 $estudianteModel = new estudianteModel();
-                $estudianteController = new estudianteController();    
+                $estudianteController = new estudianteController();
                 
                 $estudianteModel->nombre = $_POST['nombre'];
                 $estudianteModel->tipo_documento = $_POST['tipo_documento'];
@@ -107,9 +110,9 @@ class titular
 
                 try {
 
-                    $estudianteController::create($estudianteModel);
+                    $resultEst = $estudianteController::create($estudianteModel);
 
-                    $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+                    /*$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
                     try {
                         //Server settings
                         $mail = new PHPMailer(); // create a new object
@@ -136,16 +139,22 @@ class titular
                         $log_mail = 'Message has been sent';
                     } catch (Exception $e) {
                         $log_mail = 'Message could not be sent. Mailer Error: '. $mail->ErrorInfo;
+                    }*/
+
+                    if ($resultEst["id_repuesta"] == 1) {
+                        return json_encode(["estado" => 1, "mensaje" => $resultEst["repuesta"]]);
+                    } else {
+                        return json_encode(["estado" => 0, "mensaje" => $resultEst["repuesta"]]);
                     }
-                            
-                    return json_encode(["estado" => 1, "mensaje" => "Sincronización exitosa", "logMail" => $log_mail]);
     
                 } catch (Exception $ex) {
                     return json_encode(["estado" => 0, "mensaje" => "Error al sincronizar datos", "error" => $ex->getMessage()]);
                 }
 
+            } else if ($result["id_repuesta"] == 1) {
+                return json_encode(["estado" => 1, "mensaje" => $result["repuesta"]]);
             } else {
-                return json_encode(["estado" => 1, "mensaje" => "Sincronización exitosa"]);
+                return json_encode(["estado" => 0, "mensaje" => $result["repuesta"]]);
             }
 
         } catch (Exception $ex) {

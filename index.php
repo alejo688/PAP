@@ -21,13 +21,17 @@
 <?php
     }
 
-    if(isset($_GET['op'])){
+    if (isset($_GET['op']))
         $op = $_GET['op'];
-    }else{
+    else
         $op = "";
-    }
+    
+    if (isset($_SESSION['perfil']))
+        $perfil = $_SESSION['perfil'];
+    else
+        $perfil = "";
 
-	$menu_admin = new menu($op);
+	$menu_admin = new menu($op, $perfil);
 	$menu_admin->menu_admin();
 
 	include "views/page/footer.php";

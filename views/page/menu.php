@@ -15,6 +15,10 @@
         <ul class="nav navbar-nav">
             <li><a href='?op=profile'>Bienvenido: <i class="mdi-action-account-circle"></i> <b class="userName">user</b></a></li>
 
+            <?php
+                if ($_SESSION['perfil'] == 5) 
+                {
+            ?>
             <li class='dropdown'>
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <i class="mdi-maps-place"></i> Módulo Localización
@@ -43,6 +47,9 @@
                     <li><a href="?op=list_plan">Planes</a></li>
                 </ul> 
             </li>
+            <?php
+                }
+            ?>
             <li><a href="?op=home"><i class="mdi-action-settings"></i> Reportes</a></li>
             <li><a href="?op=logout"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
         </ul>

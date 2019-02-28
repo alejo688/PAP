@@ -113,7 +113,8 @@ function formAction(route, formData, routeExit) {
             console.log(result.error);
         } else {
             bootbox.alert(result.mensaje, function() {
-                location.href = routeExit;
+                //location.href = routeExit;
+                console.log(result.resultado);
             });
         }
     });
